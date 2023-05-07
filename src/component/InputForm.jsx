@@ -1,19 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import { CLEAR, ENTER_NUMBER, GENERATE } from "../constant";
 
-const InputForm = ({ onGenerateValidISBN }) => {
-  const [ISBNNumber, setISBNNumber] = useState("");
-
-  const onClearInput = () => {
-    setISBNNumber("");
-  };
-
-  const onChangeNumber = (event) => {
-    setISBNNumber(event.target.value);
-  };
-
+const InputForm = ({
+  onGenerateValidISBN,
+  onClearAllHandler,
+  onChangeNumber,
+  ISBNNumber,
+}) => {
   return (
     <React.Fragment>
       <div className="form-wrapper">
@@ -22,7 +17,6 @@ const InputForm = ({ onGenerateValidISBN }) => {
           onSubmit={(event) => {
             event.preventDefault();
             onGenerateValidISBN(event);
-            onClearInput();
           }}
         >
           <input
@@ -35,7 +29,7 @@ const InputForm = ({ onGenerateValidISBN }) => {
           />
           <div className="form-action">
             <button type="submit">{GENERATE}</button>
-            <button onClick={onClearInput}>{CLEAR}</button>
+            <button onClick={onClearAllHandler}>{CLEAR}</button>
           </div>
         </form>
       </div>
@@ -45,6 +39,9 @@ const InputForm = ({ onGenerateValidISBN }) => {
 
 InputForm.propTypes = {
   onGenerateValidISBN: PropTypes.func.isRequired,
+  onClearAllHandler: PropTypes.func.isRequired,
+  ISBNNumber: PropTypes.string,
+  onChangeNumber: PropTypes.func.isRequired,
 };
 
 export default InputForm;
