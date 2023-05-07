@@ -2,11 +2,11 @@ import React from "react";
 import { COMPLETE_ISBN } from "../constant";
 import PropTypes from "prop-types";
 
-const ValidISBNNumber = (props) => {
+const ValidISBNNumber = ({ value }) => {
   return (
     <div>
       <span>{COMPLETE_ISBN}</span>
-      <span>{props.value}</span>
+      <span>{value}</span>
     </div>
   );
 };
